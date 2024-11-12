@@ -16,3 +16,8 @@ filterDesc.value = descParam
 function filter() {
     window.location.href = "/?name=" + filterName.value + "&desc=" + filterDesc.value
 }
+
+// refresh every minute...
+setTimeout(function() {
+    window.location.reload(1);
+}, 60000);

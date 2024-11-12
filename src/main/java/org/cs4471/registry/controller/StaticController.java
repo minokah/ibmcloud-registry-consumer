@@ -17,6 +17,9 @@ public class StaticController {
     @Value("${service.registrar}")
     private String registrarURL;
 
+    @Value("${service.registrarbackup}")
+    private String backupURL;
+
     @GetMapping("/")
     public String root(Model model, HttpServletRequest request) {
         String nameFilter = request.getParameter("name");
@@ -31,6 +34,14 @@ public class StaticController {
                 .timeout(Duration.ofSeconds(10))
                 .onErrorResume(Exception.class, ex -> Mono.just(new ArrayList()))
                 .block();
+
+        // No entries? Try the second one instead
+        if (entries == null || entries.isEmpty()) {
+            entries = WebClient.builder().baseUrl(backupURL).build().get().uri(query).retrieve().bodyToMono(ArrayList.class)
+                    .timeout(Duration.ofSeconds(10))
+                    .onErrorResume(Exception.class, ex -> Mono.just(new ArrayList()))
+                    .block();
+        }
 
         model.addAttribute("entries", entries);
         return "listing";
