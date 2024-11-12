@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.cs4471</groupId>
-	<artifactId>registry</artifactId>
+	<artifactId>registryconsumer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>registry</name>
-	<description>Registry service for microservices</description>
+	<name>registry-consumer</name>
+	<description>Registry consumer, frontend for service listing</description>
 	<url/>
 	<licenses>
 		<license/>
