@@ -31,8 +31,8 @@
         <div class="alert alert-warning" role="alert">No services registered (or found because of your filters) :(</div>
     </span>
 
-    <div class="row row-cols-2" th:each="entry : ${entries}">
-        <div class="col-6 mb-3">
+    <div class="row row-cols-2">
+        <div class="col-6 mb-3" th:each="entry : ${entries}">
             <ul class="list-group">
                 <li class="list-group-item list-group-item-info">
                     <b th:text="${entry.name}">Service Name</b>
